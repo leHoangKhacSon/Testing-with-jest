@@ -26,5 +26,5 @@ module.exports.protectedRoute = (req, res, next) => {
     return next();
   }
   // else token not exists
-  res.status(401).send('anauthorized');
+  res.status(401).send('Unauthorized');
 }

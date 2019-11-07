@@ -5,14 +5,14 @@ const brcypt = require('bcrypt');
 module.exports.register = async (req, res, next) => {
   const { username, password, rePassword } = req.body;
   let err = [];
-  if(username == null) {
-    err.push('username least 6 characters');
+  if(!username) {
+    err.push('username cannot be blank');
   }
   if(!password) {
-    err.push('password least 6 characters');
+    err.push('password cannot be blank');
   }
   if(!rePassword) {
-    err.push('rePassword least 6 characters');
+    err.push('rePassword cannot be blank');
   }
   if(err.length > 0) {
     res.status(400).send(err);
@@ -20,13 +20,13 @@ module.exports.register = async (req, res, next) => {
   }
   err = [];
   if(password !== rePassword) {
-    err.push('password not match');
+    err.push('password does not match');
   }
   if(password.length < 6) {
-    err.push('password least 6 characters');
+    err.push('password must be at least 6 characters');
   }
   if(username.trim().length < 6) {
-    err.push('username least 6 characters');
+    err.push('username must be at least 6 characters');
   }
   if(err.length > 0) {
     res.status(400).send(err);
@@ -34,7 +34,7 @@ module.exports.register = async (req, res, next) => {
   }
   const findusername = await User.findOne({username});
   if(findusername) {
-    res.status(400).send('username existed');
+    res.status(400).send('username exists');
     return;
   }
   // username not exists in database
@@ -58,7 +58,7 @@ module.exports.register = async (req, res, next) => {
       token
     });
   } catch (error) {
-    res.status(401).send('register account fail');
+    res.status(401).send('register fail');
   }
 }
 
@@ -67,10 +67,10 @@ module.exports.login = async (req, res, next) => {
     const { username, password } = req.body;
     let err = [];
     if(username == null) {
-      err.push('username least 6 characters');
+      err.push('username cannot be blank');
     }
     if(!password) {
-      err.push('password least 6 characters');
+      err.push('password cannot be blank');
     }
     if(err.length > 0) {
       res.status(400).send(err);
@@ -78,10 +78,10 @@ module.exports.login = async (req, res, next) => {
     }
     err = [];
     if(password.length < 6) {
-      err.push('password least 6 characters');
+      err.push('password must be at least 6 characters');
     }
     if(username.trim().length < 6) {
-      err.push('username least 6 characters');
+      err.push('username must be at least 6 characters');
     }
     if(err.length > 0) {
       res.status(400).send(err);
@@ -90,7 +90,7 @@ module.exports.login = async (req, res, next) => {
     const findUser = await User.findOne({username});
     // if username not exists database
     if(!findUser) {
-      res.status(400).send('username not exists');
+      res.status(400).send('username does not exists');
       return;
     }
     // else username existed in database
@@ -109,6 +109,6 @@ module.exports.login = async (req, res, next) => {
       token
     });
   } catch (error) {
-    res.status(400).send('login fail');
+    res.status(401).send('login fail');
   }
 } 

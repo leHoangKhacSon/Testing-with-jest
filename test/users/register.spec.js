@@ -5,16 +5,14 @@ describe('POST /api/register', () => {
   it('test case 1', async () => {
     try {
       const res = await axios.post(
-        'http://localhost:7000/api/user/register',
-        {
-        }
+        'http://localhost:7000/api/user/register'
       );
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'username least 6 characters',
-        'password least 6 characters',
-        'rePassword least 6 characters'
+        'username cannot be blank',
+        'password cannot be blank',
+        'rePassword cannot be blank'
       ])
     }
   })
@@ -31,7 +29,7 @@ describe('POST /api/register', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'username least 6 characters'
+        'username cannot be blank'
       ])
     }
   })
@@ -48,7 +46,7 @@ describe('POST /api/register', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'password least 6 characters'
+        'password cannot be blank'
       ])
     }
   })
@@ -65,7 +63,7 @@ describe('POST /api/register', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'rePassword least 6 characters'
+        'rePassword cannot be blank'
       ])
     }
   })
@@ -83,7 +81,7 @@ describe('POST /api/register', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'username least 6 characters'
+        'username must be at least 6 characters'
       ])
     }
   })
@@ -101,7 +99,7 @@ describe('POST /api/register', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'password least 6 characters'
+        'password must be at least 6 characters'
       ])
     }
   })
@@ -119,7 +117,7 @@ describe('POST /api/register', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'password not match'
+        'password does not match'
       ])
     }
   })
@@ -136,7 +134,7 @@ describe('POST /api/register', () => {
       );
     } catch (error) {
       expect(error.response.status).toEqual(400)
-      expect(error.response.data).toEqual('username existed');
+      expect(error.response.data).toEqual('username exists');
     }
   })
   // pass het

@@ -5,6 +5,6 @@ module.exports.index = async (req, res) => {
     const books = await Book.find();
     res.status(200).json(books);
   } catch (error) {
-    res.status(400).send('server not found');
+    res.status(404).send('server not found');
   }
 }

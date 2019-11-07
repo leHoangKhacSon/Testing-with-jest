@@ -5,15 +5,13 @@ describe('POST /api/login', () => {
   it('test case 10', async () => {
     try {
       const res = await axios.post(
-        'http://localhost:7000/api/user/login',
-        {
-        }
+        'http://localhost:7000/api/user/login'
       );
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'username least 6 characters',
-        'password least 6 characters'
+        'username cannot be blank',
+        'password cannot be blank'
       ])
     }
   })
@@ -29,7 +27,7 @@ describe('POST /api/login', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'username least 6 characters'
+        'username cannot be blank'
       ])
     }
   })
@@ -45,7 +43,7 @@ describe('POST /api/login', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'password least 6 characters'
+        'password cannot be blank'
       ])
     }
   })
@@ -62,7 +60,7 @@ describe('POST /api/login', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'username least 6 characters'
+        'username must be at least 6 characters'
       ])
     }
   })
@@ -79,7 +77,7 @@ describe('POST /api/login', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual([
-        'password least 6 characters'
+        'password must be at least 6 characters'
       ])
     }
   })
@@ -96,7 +94,7 @@ describe('POST /api/login', () => {
     } catch (error) {
       expect(error.response.status).toEqual(400)
       expect(error.response.data).toEqual(
-        'username not exists'
+        'username does not exists'
       )
     }
   })
