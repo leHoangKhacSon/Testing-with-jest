@@ -1,5 +1,16 @@
 # Testing API with Jestjs
 
+## Introduce
+
+This project use jest for testing Nodejs API. Server use Express, mongoose, Jsonwebtoken and bcrypt. Server provide three API for testing:
+
+```
+POST/api/user/register
+
+POST/api/user/login
+
+GET/api/books
+```
 ## Installation
 
 using npm:
@@ -14,17 +25,31 @@ $ yarn install
 ## Setting
 
 Step 1: Create .env file in server folder 
+
 Step 2: Create key PORT={value} and key SECRECT_KEY={random value}
+
 Step 3: Completed
 
 ## Running test
 
-using npm:
+Using npm:
 ```
+In patch */Testing-with-jest/server
+
+$ npm run dev
+
+In patch */Testing-with-jest/test
+
 $ npm test
 ```
 
-using yarn:
+Using yarn:
 ```
-$ yarn test 
+In patch */Testing-with-jest/server
+
+$ yarn run dev
+
+In patch */Testing-with-jest/test
+
+$ yarn test
 ```
